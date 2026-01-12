@@ -2134,8 +2134,6 @@ spawn(const Arg *arg)
 {
 	struct sigaction sa;
 
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
@@ -2724,8 +2722,8 @@ view(const Arg *arg)
 	selmon->sellt = selmon->pertag->sellts[selmon->pertag->curtag];
 	selmon->lt[selmon->sellt] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt];
 	selmon->lt[selmon->sellt^1] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt^1];
-	focus(NULL);
 	arrange(selmon);
+	focus(NULL);
 }
 
 pid_t
